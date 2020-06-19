@@ -1,0 +1,39 @@
+<main class="container-fluid">
+	<div class="row">
+		<aside class="col-lg-2 bg-dark p-0">
+			<app-sidebar class="ml-auto"></app-sidebar>
+		</aside>
+		<div class="col-lg-10">
+			<div class="row">
+				<div class="container-fluid pt-4">
+					<h4 class="h5 mb-4">Complaints</h4>
+					<table class="table table-striped">
+						<thead>
+							<tr>
+								<th>#</th>
+								<th>Name</th>
+								<th>Matric</th>
+								<th>Department</th>
+								<th>Action</th>
+							</tr>
+						</thead>
+
+						<tbody>
+							<tr *ngIf="complaints == null">
+								<td colspan="5">No Record Found</td>
+							</tr>
+
+							<tr *ngFor="let complain of complaints; index as i">
+								<td>{{i + 1}}</td>
+								<td>{{complain.name}}</td>
+								<td>{{complain.matric}}</td>
+								<td>{{complain.department}}</td>
+								<td><a routerLink="/view-complaint/{{complain.id}}" class="btn btn-danger">View</a></td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

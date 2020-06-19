@@ -1,0 +1,58 @@
+<main class="container-fluid h-100">
+	<div class="row full-row">
+		<aside class="col-lg-2 bg-dark p-0">
+			<app-sidebar></app-sidebar>
+		</aside>
+
+		<div class="col-lg-10 bg-light">
+			<div class="row">
+				<div class="container-fluid py-4 px-5">
+					<div class="row" *ngIf="complaint != null">
+
+						<div  class="col-lg-6">
+							<p><b>Name:</b></p>
+							<p>{{complaint.name}}</p>
+							<p><b>Matric:</b></p>
+							<p>{{complaint.matric}}</p>
+							<p><b>Department:</b></p>
+							<p>{{complaint.department}}</p>
+							<p><b>Complaint:</b></p>
+							<p>{{complaint.message}}</p>
+
+							<button *ngIf="complaint.status == 1" class="btn btn-success mt-4 px-5 btn-sm">Attended</button>
+							<button *ngIf="complaint.status == 0" class="btn btn-danger mt-4 px-5 btn-sm">Pending</button>
+						</div>
+
+						<div class="col-lg-6">
+							<div *ngIf="complaint.status == 0" class="card">
+								<div class="card-header py-0">
+									<h4 class="card-title mt-2 h-5">
+										Reply this student
+									</h4>
+								</div>
+
+								<div class="card-body">
+									<form [formGroup]="replyForm" (ngSubmit)="reply(replyForm.value)">
+										<div class="form-group">
+											<label>Subject</label>
+											<input type="text" formControlName="subject" class="form-control" placeholder="Subject">
+										</div>
+
+										<input type="hidden" formControlName="id" value="complaint.id">
+
+										<div class="form-group">
+											<label>Message</label>
+											<textarea class="form-control" formControlName="message" rows="4" placeholder="Reply Message"></textarea>
+										</div>
+
+										<button class="btn btn-dark mt-4 px-5">Reply</button>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</main>

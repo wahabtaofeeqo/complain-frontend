@@ -1,0 +1,73 @@
+<main>
+	<div class="col-md-8 col-lg-6 mx-auto py-5">
+		<div class="card">
+			<div class="card-header py-0">
+				<h4 class="card-title mt-2">Create Account</h4>
+			</div>
+
+			<form [formGroup]="createForm" (ngSubmit)="register(createForm.value)">
+				<div class="card-body">
+					<div class="form-group">
+						<label for="">Name</label>
+						<input type="text" name="name" class="form-control" placeholder="Name" formControlName="name" required>
+					</div>
+
+					<div class="form-group">
+						<label for="">Email</label>
+						<input type="email" class="form-control" placeholder="Email" formControlName="email">
+					</div>
+
+					<div class="form-group">
+						<label for="">Phone</label>
+						<input type="text" class="form-control" placeholder="Phone" formControlName="phone">
+					</div>
+
+					<div class="form-group">
+						<label for="">Matric</label>
+						<input type="text" name="matric" class="form-control" placeholder="Matric Number" formControlName="matric">
+					</div>
+
+					<div class="form-group">
+						<label for="">Level</label>
+						<select class="form-control" formControlName="level">
+							<option value="ND 1">ND 1</option>
+							<option value="ND 2">ND 2</option>
+							<option value="HND 1">HND 1</option>
+							<option value="HND 2">HND 2</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label>Faculty/School</label>
+						<select class="form-control" formControlName="school" (ngModelChange)="populate($event)">
+							<option value=""></option>
+							<option value="science">Science and Technology</option>
+							<option value="management">Business and Management Studies</option>
+							<option value="communication">Communication and Information Technology</option>
+							<option value="environmental">Environmental Studies</option>
+							<option value="engineering">Engineering</option>
+						</select>
+					</div>
+
+					<div *ngIf="departments != null" class="form-group">
+						<label>Department</label>
+						<select class="form-control" formControlName="department">
+							<option *ngFor="let dept of departments" value="{{dept}}">
+								{{dept}}
+							</option>
+						</select>
+					</div>
+
+					<div class="form-group">
+						<label for="">Password</label>
+						<input type="text" formControlName="password" class="form-control" placeholder="Password" required>
+					</div>
+				</div>
+
+				<div class="card-footer py-2">
+					<button class="btn btn-dark px-5">Register</button>
+				</div>
+			</form>
+		</div>
+	</div>
+</main>
